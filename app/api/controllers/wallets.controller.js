@@ -1,47 +1,48 @@
 const mongoose = require('mongoose');
-const Wallets = mongoose.model('Wallets');
+const Wallet = mongoose.model('Wallet');
 
 exports.listAll = function (req, res) {
-  Wallets.find({}, function (err, wallets) {
+  Wallet.find({}, function (err, wallets) {
     if (err)
-      res.send(err);
+      return res.send(err);
 
     res.json(wallets);
   });
 };
 
 exports.create = function (req, res) {
-  const wallet = new Wallets(req.body);
-  wallet.save(function (err, task) {
-    if (err)
-      res.send(err);
-
-    res.json(task);
+  const wallet = new Wallet(req.body);
+  wallet.save(function (err, wallet) {
+    console.log('wallet', wallet);
+    if (err) {
+      return res.send(err);
+    }
+    res.json(wallet);
   });
 };
 
 exports.read = function (req, res) {
-  Wallets.findById(req.params.id, function (err, task) {
+  Wallet.findById(req.params.walletId, function (err, task) {
     if (err)
-      res.send(err);
+      return res.send(err);
 
     res.json(task);
   });
 };
 
 exports.update = function (req, res) {
-  Wallets.findOneAndUpdate(req.params.id, req.body, {new: true}, function (err, task) {
+  Wallet.findOneAndUpdate(req.params.walletId, req.body, {new: true}, function (err, task) {
     if (err)
-      res.send(err);
+      return res.send(err);
 
     res.json(task);
   });
 };
 
 exports.delete = function (req, res) {
-  Wallets.remove({_id: req.params.id}, function (err, task) {
+  Wallet.remove({_id: req.params.walletId}, function (err, task) {
     if (err)
-      res.send(err);
+      return res.send(err);
 
     res.json({message: 'Wallet successfully deleted'});
   });
