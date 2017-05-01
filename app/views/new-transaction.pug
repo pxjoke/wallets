@@ -1,0 +1,22 @@
+extends layout
+
+block content
+    h1.display-4 New Transaction
+    .row
+        .col-5
+            hr
+            form(action=actionUrl, method='POST')
+                .form-group
+                    label(for='transactionOperation') Operation
+                    select#transactionOperation.form-control(name="operation")
+                        option(selected) outcome
+                        option income
+                .form-group
+                    label(for='transactionBalance') Amount
+                    .input-group
+                        input#transactionBalance.form-control(name="value" type='number' placeholder='15000' required)
+                        .input-group-addon $
+                .form-group
+                    label(for='transactionComment') Comment
+                    input#transactionComment.form-control(name="comment" type='text' placeholder='Some comment here')
+                button.btn.btn-outline-primary(type='submit') Add

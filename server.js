@@ -1,29 +1,38 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const db = require('./config/db');
-const app = express();
-const port = 3333;
-const wallets = require('./server/api/models/wallets.model');
-const user = require('./server/api/models/user.model');
 const session = require('express-session');
+const expressValidator = require('express-validator');
+const MongoStore = require('connect-mongo')(session);
 
-mongoose.Promise = global.Promise;
-mongoose.connect(db.url);
+const port = 3333;
+const app = express();
+const dbConfig = require('./config/db');
+const wallet = require('./app/models/wallet.model');
+const transaction = require('./app/models/transaction.model');
+const user = require('./app/models/user.model');
+
+const db = mongoose
+    .connect(dbConfig.url);
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+app.use(expressValidator());
 
-app.use(express.static('front/app'));
+app.use(express.static('app/public'));
 
+app.set('views', 'app/views');
+app.set('view engine', 'pug');
 
 app.use(session({
-  secret: 'pxjoke',
-  resave: false,
-  saveUninitialized: false
+    store:  new MongoStore({mongooseConnection: mongoose.connection}),
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true
 }));
 
-require('./server/api/routes/wallets.routes')(app);
-require('./server/api/routes/users.routes')(app);
+require('./app/routes/wallets.routes')(app);
+require('./app/routes/users.routes')(app);
+require('./app/routes/index.routes')(app);
 
 app.listen(port);

@@ -1,0 +1,25 @@
+extends layout
+
+block content
+    h1.display-4 My wallets
+    hr
+    .row
+        .col-6
+            each wallet in wallets
+                .card.mb-4
+                    .card-block
+                        h3.card-title #{wallet.name}
+                        p.card-text
+
+                            ul.list-group.list-group-flush
+                                li.list-group-item.text-right Balance:
+                                    span.badge.badge-info.ml-2   #{wallet.balance} $
+                        a.btn.btn-outline-info.mr-4(href="/wallets/" + wallet._id) Details
+                        //a.btn.btn-outline-warning.mr-2(href="#") Edit
+                        a.btn.btn-outline-danger(href="#") Delete
+
+        .col-6
+            a.btn.btn-lg.btn-info(href='/new-wallet') Add Wallet
+
+
+

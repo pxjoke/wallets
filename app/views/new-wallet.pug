@@ -1,0 +1,18 @@
+extends layout
+
+block content
+    h1.display-4 Add new Wallet
+
+    .row
+        .col-5
+            hr
+            form(action='/new-wallet', method='POST')
+                .form-group
+                    label(for=walletName) Name
+                    input#walletName.form-control(name="name" type='text' placeholder='My new wallet' required)
+                .form-group
+                    label(for=walletBalance) Balance
+                    .input-group
+                        input#walletBalance.form-control(name="balance" type='number' placeholder='15000' required)
+                        .input-group-addon $
+                button.btn.btn-outline-primary(type='submit') Add

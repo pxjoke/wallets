@@ -1,0 +1,29 @@
+extends layout
+
+block content
+    h1.display-4 #{wallet.name} :
+        small.text-muted #{wallet.balance} $
+    hr
+    .row
+        .col-6
+            .list-group
+                each transaction in transactions
+                    a.list-group-item.list-group-item-action.flex-column.align-items-start(href='#')
+                        .d-flex.w-100.justify-content-between
+                            h5.mb-1 #{transaction.operation}
+                            if transaction.operation === 'income'
+                                p.badge.badge-success.badge-pill + #{transaction.value} $
+
+                            if transaction.operation === 'outcome'
+                                p.badge.badge-danger.badge-pill - #{transaction.value} $
+
+
+                        p.mb-1 #{transaction.comment}
+                        small #{transaction.dateFormated}
+        .col-6
+            a.btn.btn-lg.btn-info(href='/wallets/' + wallet._id + '/new-transaction') New Transaction
+            a.btn.btn-lg.btn-outline-info.ml-2(href='/wallets') Change Wallet
+
+
+
+
