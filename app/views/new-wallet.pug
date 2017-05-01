@@ -2,10 +2,9 @@ extends layout
 
 block content
     h1.display-4 Add new Wallet
-
+    hr
     .row
-        .col-5
-            hr
+        .col-6
             form(action='/new-wallet', method='POST')
                 .form-group
                     label(for=walletName) Name
@@ -15,4 +14,6 @@ block content
                     .input-group
                         input#walletBalance.form-control(name="balance" type='number' placeholder='15000' required)
                         .input-group-addon $
-                button.btn.btn-outline-primary(type='submit') Add
+                button.btn.btn-info(type='submit') Add
+        .col-6
+            a.btn.btn-lg.btn-outline-info.ml-2(href='/wallets') Show all wallets
