@@ -8,7 +8,7 @@ exports.login = function (req, res, next) {
     if (session.user) {
         console.log('User is already logged in');
         console.log(req.session);
-        return res.redirect('/');
+        return res.redirect('/wallets');
     }
 
     User.findOne({email: req.body.email}, (err, user) => {
@@ -24,7 +24,7 @@ exports.login = function (req, res, next) {
         if (user.password === hash(req.body.password)) {
             console.log("User password is ok");
             session.user = user;
-            res.redirect('/');
+            res.redirect('/wallets');
             return;
         }
 

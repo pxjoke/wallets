@@ -12,7 +12,7 @@ module.exports = function (app) {
                 return;
             }
 
-            res.render('login');
+            res.render('login', {title: 'Login Page'});
         })
         .post(userController.login);
 

@@ -14,7 +14,7 @@ exports.listAll = function (req, res) {
 
         console.log(wallets);
 
-        res.render('wallets', {wallets})
+        res.render('wallets', {title: 'Wallets', wallets})
     });
 };
 
