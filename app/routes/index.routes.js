@@ -26,7 +26,7 @@ module.exports = function (app) {
                 return;
             }
 
-            res.render('registration', {user: {}});
+            res.render('registration', {title: 'Registration', user: {}});
         })
         .post(userController.create);
 

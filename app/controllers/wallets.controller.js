@@ -46,6 +46,14 @@ exports.create = function (req, res) {
     });
 };
 
+exports.delete = function (req, res) {
+    const user = req.user;
+
+    Wallet.deleteOne({name: req.params.walletName}, (err) => {
+        res.redirect('/wallets')
+    })
+};
+
 exports.walletPage = function (req, res) {
     const user = req.user;
 
@@ -61,7 +69,11 @@ exports.walletPage = function (req, res) {
         }
 
         Transaction.find({wallet: wallet._id}, (err, transactions) => {
-            res.render('wallet', {title: 'Transactions', wallet, transactions: transactions.sort((a, b) => b.date - a.date)})
+            res.render('wallet', {
+                title: 'Transactions',
+                wallet,
+                transactions: transactions.sort((a, b) => b.date - a.date)
+            })
         });
 
     });

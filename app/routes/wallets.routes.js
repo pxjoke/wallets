@@ -17,4 +17,8 @@ module.exports = function (app) {
     app.route('/wallets/:walletName')
         .get(usersController.checkUser, walletsController.walletPage);
 
+    app.route('/wallets/:walletName/delete')
+        .get(usersController.checkUser, walletsController.delete);
+
+
 };

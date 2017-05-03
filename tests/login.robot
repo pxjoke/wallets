@@ -13,3 +13,11 @@ Valid Login
     Submit Credentials
     Wallets Page Should Be Open
     [Teardown]    Close Browser
+
+Valid Logout
+    Valid Login
+    Go To               ${LOGOUT URL}
+    Title Should Be     Welcome Page
+    Go To               ${WALLETS URL}
+    Title Should Be     Login Page
+    [Teardown]    Close Browser

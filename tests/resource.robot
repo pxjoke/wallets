@@ -14,9 +14,11 @@ ${DELAY}                0
 ${VALID USER}           pxjoke@gmail.com
 ${VALID PASSWORD}       12345
 ${LOGIN URL}            http://${SERVER}/login
+${LOGOUT URL}            http://${SERVER}/logout
 ${WELCOME URL}          http://${SERVER}/
 ${WALLETS URL}          http://${SERVER}/wallets
 ${NEW_WALLET URL}       http://${SERVER}/new-wallet
+${REGISTER URL}         http://${SERVER}/register
 
 *** Keywords ***
 Open Browser To Login Page
@@ -24,6 +26,12 @@ Open Browser To Login Page
     Maximize Browser Window
     Set Selenium Speed    ${DELAY}
     Login Page Should Be Open
+
+Open Browser To Register Page
+    Open Browser    ${REGISTER URL}    ${BROWSER}
+    Maximize Browser Window
+    Set Selenium Speed    ${DELAY}
+
 
 Login Page Should Be Open
     Title Should Be    Login Page

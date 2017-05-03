@@ -16,7 +16,7 @@ block content
                                     span.badge.badge-info.ml-2   #{wallet.balance} $
                         a.btn.btn-outline-info.mr-4(href="/wallets/" + wallet.name) Details
                         //a.btn.btn-outline-warning.mr-2(href="#") Edit
-                        a.btn.btn-outline-danger(href="#") Delete
+                        a.btn.btn-outline-danger(href="/wallets/" + wallet.name + "/delete") Delete
 
         .col-6
             a.btn.btn-lg.btn-info(href='/new-wallet') Add Wallet

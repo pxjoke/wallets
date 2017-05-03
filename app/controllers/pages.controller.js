@@ -6,5 +6,5 @@ exports.index = (req, res) => {
         return;
     }
 
-    res.render('index');
+    res.render('index', {title: 'Welcome Page'});
 };
