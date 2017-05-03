@@ -26,6 +26,6 @@ Login With Invalid Credentials Should Fail
     Login Should Have Failed
 
 Login Should Have Failed
-    Location Should Be    ${LOGIN URL}
+    Location Should Be              ${LOGIN URL}
     Page Should Contain Element     css=div.alert.alert-danger
-    Element Should Contain  css=div.alert.alert-danger      Email or password is incorrect
+    Element Should Contain          css=div.alert.alert-danger      Email or password is incorrect

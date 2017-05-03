@@ -2,7 +2,7 @@ extends layout
 
 block content
     h1.display-4 #{wallet.name} :
-        small.text-muted  #{wallet.balance} $
+        small#walletBallance.text-muted  #{wallet.balance} $
     hr
     .row
         .col-6
@@ -21,7 +21,7 @@ block content
                         p.mb-1 #{transaction.comment}
                         small #{transaction.dateFormated}
         .col-6
-            a.btn.btn-lg.btn-info(href='/wallets/' + wallet._id + '/new-transaction') New Transaction
+            a.btn.btn-lg.btn-info(href='/wallets/' + wallet.name + '/new-transaction') New Transaction
             a.btn.btn-lg.btn-outline-info.ml-2(href='/wallets') Change Wallet
 
 

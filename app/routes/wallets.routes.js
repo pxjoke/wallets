@@ -6,7 +6,7 @@ module.exports = function (app) {
     app.route('/wallets')
         .get(usersController.checkUser, walletsController.listAll);
 
-    app.route('/wallets/:walletId/new-transaction')
+    app.route('/wallets/:walletName/new-transaction')
         .get(usersController.checkUser, transactionsController.newTransactionPage)
         .post(usersController.checkUser, transactionsController.create);
 
@@ -14,7 +14,7 @@ module.exports = function (app) {
         .get(usersController.checkUser, walletsController.newWalletPage)
         .post(usersController.checkUser, walletsController.create);
 
-    app.route('/wallets/:walletId')
+    app.route('/wallets/:walletName')
         .get(usersController.checkUser, walletsController.walletPage);
 
 };

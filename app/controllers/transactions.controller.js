@@ -7,7 +7,7 @@ const operationTypes = ['income', 'outcome'];
 exports.newTransactionPage = (req, res) => {
     const user = req.user;
 
-    Wallet.findOne({_id: req.params.walletId}, (err, wallet) => {
+    Wallet.findOne({name: req.params.walletName}, (err, wallet) => {
         if(!wallet) {
             res.redirect('/404');
             return
@@ -18,9 +18,9 @@ exports.newTransactionPage = (req, res) => {
             return;
         }
 
-        const actionUrl = `/wallets/${wallet._id}/new-transaction`;
+        const actionUrl = `/wallets/${wallet.name}/new-transaction`;
 
-        res.render('new-transaction', {operationTypes, wallet, actionUrl})
+        res.render('new-transaction', {title: 'New Transaction', operationTypes, wallet, actionUrl})
     });
 
 };
@@ -28,10 +28,10 @@ exports.newTransactionPage = (req, res) => {
 exports.create = function (req, res) {
     const user = req.user;
 
-    console.log('Wallet id: ', req.params.walletId);
+    console.log('Wallet id: ', req.params.walletName);
 
     Wallet
-        .findOne({_id: req.params.walletId}, (err, wallet) => {
+        .findOne({name: req.params.walletName}, (err, wallet) => {
 
             if(!wallet) {
                 res.redirect('/404');
@@ -62,7 +62,7 @@ exports.create = function (req, res) {
 
             transaction.save(() => {
                 wallet.save(() => {
-                    res.redirect('/wallets/' + wallet._id);
+                    res.redirect('/wallets/' + wallet.name);
                 });
             });
 

@@ -19,7 +19,7 @@ exports.listAll = function (req, res) {
 };
 
 exports.newWalletPage = (req, res) => {
-    res.render('new-wallet', {wallet: {}});
+    res.render('new-wallet', {title: 'Add new Wallet', wallet: {}});
 };
 
 exports.create = function (req, res) {
@@ -49,7 +49,7 @@ exports.create = function (req, res) {
 exports.walletPage = function (req, res) {
     const user = req.user;
 
-    Wallet.findById(req.params.walletId, function (err, wallet) {
+    Wallet.findOne({name: req.params.walletName}, function (err, wallet) {
         if (!wallet) {
             res.redirect('/404');
             return;
@@ -61,8 +61,7 @@ exports.walletPage = function (req, res) {
         }
 
         Transaction.find({wallet: wallet._id}, (err, transactions) => {
-
-            res.render('wallet', {wallet, transactions})
+            res.render('wallet', {title: 'Transactions', wallet, transactions: transactions.sort((a, b) => b.date - a.date)})
         });
 
     });
