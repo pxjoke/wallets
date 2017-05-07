@@ -1,7 +1,7 @@
 *** Settings ***
 Test Setup        Valid Login
-Suite Teardown    Close Browser
-Resource          resource.robot
+Test Teardown    Close Browser
+Resource          res/resource.robot
 
 *** Test Cases ***
 User Open Add New Wallet

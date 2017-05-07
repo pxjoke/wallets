@@ -7,10 +7,11 @@ Documentation     A resource file with reusable keywords and variables.
 Library           Selenium2Library
 Library           BuiltIn
 Library           String
+#Library           ./Wallets.py
 *** Variables ***
 ${SERVER}               localhost:3333
-${BROWSER}              Chrome
-${DELAY}                0
+${BROWSER}              Phantomjs
+${DELAY}                0.5
 ${VALID USER}           pxjoke@gmail.com
 ${VALID PASSWORD}       12345
 ${LOGIN URL}            http://${SERVER}/login
@@ -24,7 +25,8 @@ ${REGISTER URL}         http://${SERVER}/register
 Open Browser To Login Page
     Open Browser    ${LOGIN URL}    ${BROWSER}
     Maximize Browser Window
-    Set Selenium Speed    ${DELAY}
+    Set Selenium Speed    0
+    Set Selenium Implicit Wait    ${DELAY}
     Login Page Should Be Open
 
 Open Browser To Register Page
@@ -56,11 +58,9 @@ Submit Credentials
     Click Button    loginSubmit
 
 Welcome Page Should Be Open
-    Location Should Be    ${WELCOME URL}
     Title Should Be    Welcome Page
 
 Wallets Page Should Be Open
-    Location Should Be    ${WALLETS URL}
     Title Should Be    Wallets
 
 Valid Login

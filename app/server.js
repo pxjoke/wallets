@@ -8,9 +8,9 @@ const MongoStore = require('connect-mongo')(session);
 const port = 3333;
 const app = express();
 const dbConfig = require('./config/db');
-const wallet = require('./app/models/wallet.model');
-const transaction = require('./app/models/transaction.model');
-const user = require('./app/models/user.model');
+const wallet = require('./models/wallet.model');
+const transaction = require('./models/transaction.model');
+const user = require('./models/user.model');
 
 const db = mongoose
     .connect(dbConfig.url);
@@ -19,9 +19,9 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(expressValidator());
 
-app.use(express.static('app/public'));
+app.use(express.static('public'));
 
-app.set('views', 'app/views');
+app.set('views', 'views');
 app.set('view engine', 'pug');
 
 app.use(session({
@@ -31,8 +31,8 @@ app.use(session({
     saveUninitialized: true
 }));
 
-require('./app/routes/wallets.routes')(app);
-require('./app/routes/users.routes')(app);
-require('./app/routes/index.routes')(app);
+require('./routes/wallets.routes')(app);
+require('./routes/users.routes')(app);
+require('./routes/index.routes')(app);
 
 app.listen(port);
