@@ -1,7 +1,7 @@
 *** Settings ***
 Test Setup        Valid Login
 Test Teardown    Close Browser
-Resource          res/resource.robot
+Resource         ../../tests/res/resource.robot
 
 *** Test Cases ***
 User Can Open New Transaction Page

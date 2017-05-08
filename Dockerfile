@@ -77,12 +77,18 @@ RUN set -ex; \
 RUN pip install --no-cache-dir virtualenv
 RUN pip install --no-cache-dir robotframework-selenium2library
 
+
 WORKDIR /app
-ADD app phantom tests /app/
+ADD . /app/
 
 WORKDIR /app/app
 RUN npm i
 
 ENV PATH /app/phantom/bin:$PATH
 
-CMD ["/bin/bash", "npm start", "robot /app/tests/login.robot"]
+ADD ./scripts/start.sh /tmp.sh
+
+RUN cat /tmp.sh | tr -d '\r' > /start.sh
+RUN chmod 755 /start.sh
+
+CMD ["/bin/bash", "/start.sh"]

@@ -11,7 +11,7 @@ Library           String
 *** Variables ***
 ${SERVER}               localhost:3333
 ${BROWSER}              Phantomjs
-${DELAY}                0.5
+${DELAY}                0.8
 ${VALID USER}           pxjoke@gmail.com
 ${VALID PASSWORD}       12345
 ${LOGIN URL}            http://${SERVER}/login

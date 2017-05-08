@@ -1,7 +1,7 @@
 *** Settings ***
 Test Setup          Open Browser To Register Page
 Test Teardown       Close Browser
-Resource            res/resource.robot
+Resource            ../../tests/res/resource.robot
 
 *** Test Cases ***
 Valid Register

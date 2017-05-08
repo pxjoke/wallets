@@ -1,7 +1,7 @@
 *** Settings ***
 Test Setup        Valid Login
 Suite Teardown    Close Browser
-Resource          res/resource.robot
+Resource          ../../tests/res/resource.robot
 
 *** Test Cases ***
 User Can Delete Wallet
