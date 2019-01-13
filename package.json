@@ -1,0 +1,27 @@
+{
+  "name": "wallets",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start-dev": "nodemon server.js",
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "connect-mongo": "^1.3.2",
+    "connect-mongodb": "^1.1.5",
+    "express": "^4.15.2",
+    "express-session": "^1.15.2",
+    "express-validator": "^3.2.0",
+    "moment": "^2.18.1",
+    "mongodb": "^2.2.26",
+    "mongoose": "^4.9.6",
+    "pug": "^2.0.0-beta.12"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}

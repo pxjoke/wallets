@@ -1,5 +1,0 @@
-FROM phantom-wallets
-
-ADD ../tests/login /app/tests
-
-CMD["robot"]
